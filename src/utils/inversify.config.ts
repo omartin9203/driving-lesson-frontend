@@ -5,12 +5,12 @@ import HttpService from '../services/core/http/http.service';
 
 // Initialize DI/IoC container
 const container = new Container();
-let { lazyInject } = getDecorators(container);
+const { lazyInject } = getDecorators(container);
 
 interface InversifyConfig {
     config: {
-        baseUrl?: string
-    }
+        baseUrl?: string;
+    };
 }
 
 function initialize(app?: InversifyConfig) {

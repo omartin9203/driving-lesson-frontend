@@ -35,7 +35,7 @@
       />
       <v-list>
         <v-list-item
-          v-for="link in filterLinks()"
+          v-for="link in filterLinks"
           :key="link.text"
           router
           :to="link.route"
@@ -70,8 +70,14 @@ export default class Navbar extends Vue {
   links = [
     {
       icon: "dashboard",
-      text: "Dashboard",
-      route: "/dashboard",
+      text: "Inicio",
+      route: "/",
+      roles: []
+    },
+    {
+      icon: "information",
+      text: "Quienes somos",
+      route: "/about",
       roles: []
     },
   ];
@@ -85,7 +91,7 @@ export default class Navbar extends Vue {
     //   roles.some((r: string) => this.user.roles.some((x: string) => x == r))
     // );
   }
-  filterLinks() {
+  get filterLinks() {
     return this.links.filter((x: any) => this.hasPermission(x.roles));
   }
 }

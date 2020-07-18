@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import Navbar from "../Navbar.vue";
+import Navbar from "./Navbar.vue";
 import Vue from "vue";
 import {Component} from "vue-property-decorator";
 

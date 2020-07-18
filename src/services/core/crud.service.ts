@@ -1,7 +1,7 @@
 ﻿import HttpService from './http/http.service';
-import { container } from '../../utils/inversify.config';
-import { IPaginateResponse } from '../../interfaces/response/IPaginateResponse';
-import { IHttpResponse } from '../../interfaces/response/IHttpResponse';
+import {container} from "@/utils/inversify.config";
+import {IHttpResponse} from "@/interfaces/response/IHttpResponse";
+import {IPaginateResponse} from "@/interfaces/response/IPaginateResponse";
 
 
 export class CrudServices<Titem, Tinput, Tupdate> {

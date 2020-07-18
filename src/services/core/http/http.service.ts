@@ -1,13 +1,13 @@
 ﻿import * as Axios from "axios";
 import { injectable } from "inversify";
 import { AxiosError, AxiosInstance, AxiosRequestConfig } from "axios";
-import { IHttpResponse } from "@/interfaces/services/IHttpResponse";
+import {IHttpResponse} from "@/interfaces/response/IHttpResponse";
 
 @injectable()
 export default class HttpService {
-    protected static timeout: number = 60000;
+    protected static timeout = 60000;
     public baseUrl?: string = undefined;
-    private failureCount: number = 0;
+    private failureCount = 0;
     public static accessToken: string;
     public static language: string;
 
@@ -110,6 +110,7 @@ export default class HttpService {
             switch (error.response.status) {
                 case 404:
                     msg = { message: "Not found", status: error.response.status };
+                    break;
                 case 401:
                     msg = { message: "Access is denied", status: error.response.status };
                     // if (this.failureCount < 3) {
@@ -117,6 +118,7 @@ export default class HttpService {
                     //     authenticationService.loginSilentAsync();
                     // }
                     // break;
+                    break;
                 case 400:
                     if (error.response.data.messages) {
                         msg = { message: error.response.data.messages[0].body };
@@ -144,7 +146,7 @@ export default class HttpService {
     }
 
     private async getConfig(data?: AxiosRequestConfig) {
-        let headers = {} as any;
+        const headers = {} as any;
 
         // var antiForgeryToken = this.getCookie("XSRF-TOKEN")
         // if (antiForgeryToken) {
@@ -164,7 +166,7 @@ export default class HttpService {
     }
 
     private getCookie(name: string) {
-        var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
         if (match) return match[2];
     }
 }
